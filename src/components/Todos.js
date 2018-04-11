@@ -24,10 +24,10 @@ export default class Todos extends Component {
           <input
             type="text"
             name="todo"
-            onChange={this.handleChange}
             value={this.state.inputTodo}
+            onChange={this.handleChange}
           />
-          <input type="submit" onClick={this.handleSubmit} value="Add Todo" />
+          <input type="submit" value="Add Todo" onClick={this.handleSubmit} />
           <Todo todos={this.state.todos} />
         </form>
       </div>
