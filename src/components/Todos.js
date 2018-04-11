@@ -17,6 +17,13 @@ export default class Todos extends Component {
       inputTodo: ''
     }))
   }
+  removeTodo = e => {
+    const todoToBeRemoved = e.target.dataset.todo
+    const todoRemoved = this.state.todos.filter(
+      item => item !== todoToBeRemoved
+    )
+    this.setState({ todos: todoRemoved })
+  }
   render() {
     return (
       <div>
@@ -28,7 +35,7 @@ export default class Todos extends Component {
             onChange={this.handleChange}
           />
           <input type="submit" value="Add Todo" onClick={this.handleSubmit} />
-          <Todo todos={this.state.todos} />
+          <Todo todos={this.state.todos} removeTodo={this.removeTodo} />
         </form>
       </div>
     )
