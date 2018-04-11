@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import Todo from './Todo'
 
 export default class Todos extends Component {
   state = {
@@ -17,7 +18,6 @@ export default class Todos extends Component {
     }))
   }
   render() {
-    const { todos } = this.state
     return (
       <div>
         <form onSubmit={this.handleSubmit}>
@@ -28,8 +28,7 @@ export default class Todos extends Component {
             value={this.state.inputTodo}
           />
           <input type="submit" onClick={this.handleSubmit} value="Add Todo" />
-          {todos.length > 0 &&
-            todos.map((todo, i) => <div key={i}>{todo}</div>)}
+          <Todo todos={this.state.todos} />
         </form>
       </div>
     )
