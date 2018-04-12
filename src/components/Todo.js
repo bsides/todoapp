@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import EditTodo from './EditTodo'
 
 export default class Todo extends Component {
   render() {
@@ -12,7 +13,6 @@ export default class Todo extends Component {
                 key={todo.id}
                 data-todo={todo.id}
                 onClick={this.props.toggleTodo}
-                onContextMenu={this.props.editTodo}
               >
                 <span
                   style={{
@@ -22,11 +22,7 @@ export default class Todo extends Component {
                 >
                   {todo.text}
                 </span>
-                <input
-                  type={todo.isEditing ? 'text' : 'hidden'}
-                  value={todo.text}
-                  onChange={this.props.handleChange}
-                />
+                <EditTodo text={todo.text} />
                 <button
                   type="button"
                   className="delete-todo"

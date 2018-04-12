@@ -8,7 +8,7 @@ export default class Todos extends Component {
     todos: []
   }
   handleChange = e => {
-    this.setState({ inputTodo: e.target.value })
+    this.setState({ inputTodo: e.currentTarget.value })
   }
   handleSubmit = e => {
     e.preventDefault()
@@ -16,8 +16,7 @@ export default class Todos extends Component {
     const todo = {
       id: ++this.initialTodoId,
       text,
-      isDone: false,
-      isEditing: false
+      isDone: false
     }
     this.setState(prevState => ({
       todos: [...prevState.todos, todo],
