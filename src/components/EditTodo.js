@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
 
-export default class EditTodo extends Component {
+class EditTodo extends Component {
   state = {
     isEditing: this.props.isEditing || false,
     text: this.props.text
   }
+
   handleFocus = () => {
     if (this.state.isEditing) {
       if (typeof this.props.onFocusOut === 'function') {
@@ -20,13 +21,11 @@ export default class EditTodo extends Component {
       isEditing: !this.state.isEditing
     })
   }
-
   handleChange = () => {
     this.setState({
       text: this.textInput.value
     })
   }
-
   handleSubmit = e => {
     e.preventDefault()
   }
@@ -63,18 +62,18 @@ export default class EditTodo extends Component {
     }
 
     return (
-      <div>
-        <label
-          className={this.props.labelClassName}
-          onClick={this.handleFocus}
-          style={{
-            fontSize: this.props.labelFontSize,
-            fontWeight: this.props.labelFontWeight
-          }}
-        >
-          {this.state.text}
-        </label>
-      </div>
+      <label
+        className={this.props.labelClassName}
+        onClick={this.handleFocus}
+        style={{
+          fontSize: this.props.labelFontSize,
+          fontWeight: this.props.labelFontWeight
+        }}
+      >
+        {this.state.text}
+      </label>
     )
   }
 }
+
+export default EditTodo

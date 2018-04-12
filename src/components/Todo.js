@@ -1,40 +1,31 @@
-import React, { Component } from 'react'
+import React from 'react'
 import EditTodo from './EditTodo'
 
-export default class Todo extends Component {
-  render() {
-    const { todos } = this.props
-    return (
-      <ul>
-        {todos.length > 0 &&
-          todos.map(todo => {
-            return (
-              <li
-                key={todo.id}
-                data-todo={todo.id}
-                onClick={this.props.toggleTodo}
-              >
-                <span
-                  style={{
-                    textDecoration: todo.isDone ? 'line-through' : 'none',
-                    display: todo.isEditing ? 'none' : 'inline'
-                  }}
-                >
-                  {todo.text}
-                </span>
-                <EditTodo text={todo.text} />
-                <button
-                  type="button"
-                  className="delete-todo"
-                  data-todo={todo.id}
-                  onClick={this.props.removeTodo}
-                >
-                  x
-                </button>
-              </li>
-            )
-          })}
-      </ul>
-    )
-  }
+const Todo = props => {
+  const { id, text, isDone, isEditing } = props.todo
+  const { removeTodo, toggleTodo } = props
+  return (
+    <li data-todo={id} onClick={toggleTodo}>
+      <pre>{JSON.stringify(props)}</pre>
+      <span
+        style={{
+          textDecoration: isDone ? 'line-through' : 'none',
+          display: isEditing ? 'none' : 'inline'
+        }}
+      >
+        {text}
+      </span>
+      <EditTodo text={text} />
+      <button
+        type="button"
+        className="delete-todo"
+        data-todo={id}
+        onClick={removeTodo}
+      >
+        x
+      </button>
+    </li>
+  )
 }
+
+export default Todo
