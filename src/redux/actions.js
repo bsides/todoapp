@@ -8,3 +8,7 @@ export const toggleTodo = id => ({
   type: 'TOGGLE_TODO',
   id
 })
+export const startEditTodo = id => ({
+  type: 'START_EDIT_TODO',
+  id
+})
