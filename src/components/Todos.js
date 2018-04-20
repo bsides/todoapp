@@ -6,10 +6,8 @@ import Todo from './Todo'
 
 const Todos = ({ todos, actions }) => {
   return (
-    <section className="main">
-      <ul>
-        {todos.map(todo => <Todo key={todo.id} todo={todo} {...actions} />)}
-      </ul>
+    <section style={{ width: 500 }}>
+      {todos.map(todo => <Todo key={todo.id} todo={todo} {...actions} />)}
     </section>
   )
 }

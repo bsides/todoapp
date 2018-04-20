@@ -2,11 +2,12 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { addTodo } from '../redux/actions'
 import EditTodo from '../components/EditTodo'
+import Typography from 'material-ui/Typography'
 
 export const AddTodo = ({ addTodo }) => {
   return (
-    <header className="header">
-      <h1>TodoApp</h1>
+    <div>
+      <Typography variant="display3">Todo App</Typography>
       <EditTodo
         newTodo
         onSave={text => {
@@ -16,7 +17,7 @@ export const AddTodo = ({ addTodo }) => {
         }}
         placeholder="Input here what need to be done"
       />
-    </header>
+    </div>
   )
 }
 

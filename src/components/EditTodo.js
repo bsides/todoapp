@@ -1,11 +1,31 @@
 import React, { Component } from 'react'
+import { withStyles } from 'material-ui/styles'
+import { FormControl, FormHelperText } from 'material-ui/Form'
+import Input, { InputLabel } from 'material-ui/Input'
+import TextField from 'material-ui/TextField'
+
+const styles = theme => ({
+  container: {
+    display: 'flex',
+    flexWrap: 'wrap'
+  },
+  formControl: {
+    margin: theme.spacing.unit
+  },
+  textInput: {
+    width: 500
+  },
+  editInput: {
+    paddingLeft: '8px'
+  }
+})
 
 class EditTodo extends Component {
   state = {
     text: this.props.text || ''
   }
 
-  handleFocus = e => {
+  handleBlur = e => {
     if (!this.props.newTodo) {
       this.props.onSave(e.target.value)
     }
@@ -26,23 +46,56 @@ class EditTodo extends Component {
   }
 
   render() {
-    const inputStyleClass = [
-      this.props.isEditing && 'edit',
-      this.props.newTodo && 'new-todo'
-    ].join(' ')
-    return (
-      <input
-        className={inputStyleClass}
-        type="text"
-        placeholder={this.props.placeholder}
-        autoFocus="true"
-        value={this.state.text}
-        onBlur={this.handleBlur}
-        onChange={this.handleChange}
-        onKeyDown={this.handleSubmit}
-      />
-    )
+    const { isEditing, classes } = this.props
+    const label = isEditing ? 'Editing this todo' : 'New Todo'
+    if (isEditing) {
+      return (
+        <TextField
+          className={classes.editInput}
+          type="text"
+          autoFocus={true}
+          value={this.state.text}
+          onBlur={this.handleBlur}
+          onChange={this.handleChange}
+          onKeyDown={this.handleSubmit}
+          margin="none"
+          id="full-width"
+          InputProps={{
+            disableUnderline: true,
+            classes: {
+              input: classes.editInput
+            }
+          }}
+          fullWidth
+        />
+      )
+    } else {
+      return (
+        <div className={classes.container}>
+          <FormControl
+            className={classes.formControl}
+            aria-describedby="name-helper-text"
+          >
+            <TextField
+              className={classes.textInput}
+              label={label}
+              type="text"
+              autoFocus={true}
+              value={this.state.text}
+              onBlur={this.handleBlur}
+              onChange={this.handleChange}
+              onKeyDown={this.handleSubmit}
+              margin="normal"
+              fullWidth
+            />
+            <FormHelperText id="name-helper-text">
+              {this.props.placeholder}
+            </FormHelperText>
+          </FormControl>
+        </div>
+      )
+    }
   }
 }
 
-export default EditTodo
+export default withStyles(styles)(EditTodo)

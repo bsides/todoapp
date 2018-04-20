@@ -1,5 +1,21 @@
 import React from 'react'
 import EditTodo from './EditTodo'
+import { withStyles } from 'material-ui/styles'
+import Checkbox from 'material-ui/Checkbox'
+import List, {
+  ListItem,
+  ListItemText,
+  ListItemSecondaryAction
+} from 'material-ui/List'
+import Divider from 'material-ui/Divider'
+import IconButton from 'material-ui/IconButton'
+import Delete from '@material-ui/icons/Delete'
+
+const styles = theme => ({
+  done: {
+    textDecoration: 'line-through'
+  }
+})
 
 class Todo extends React.Component {
   state = {
@@ -20,7 +36,7 @@ class Todo extends React.Component {
   }
 
   render() {
-    const { todo, toggleTodo, deleteTodo } = this.props
+    const { todo, toggleTodo, deleteTodo, classes } = this.props
     const todoStyleClass = [
       todo.isDone && 'completed',
       this.state.isEditing && 'editing'
@@ -28,28 +44,55 @@ class Todo extends React.Component {
     let element
     if (this.state.isEditing) {
       element = (
-        <EditTodo
-          text={todo.text}
-          isEditing={this.state.isEditing}
-          onSave={text => this.handleSave(todo.id, text)}
-        />
-      )
-    } else {
-      element = (
-        <div className="view">
-          <input
-            className="toggle"
+        <ListItem>
+          <Checkbox
             type="checkbox"
             checked={todo.isDone}
             onChange={() => toggleTodo(todo.id)}
           />
-          <label onDoubleClick={this.handleDoubleClick}>{todo.text}</label>
-          <button className="destroy" onClick={() => deleteTodo(todo.id)} />
-        </div>
+          <EditTodo
+            text={todo.text}
+            isEditing={this.state.isEditing}
+            onSave={text => this.handleSave(todo.id, text)}
+          />
+          <ListItemSecondaryAction onClick={() => deleteTodo(todo.id)}>
+            <IconButton aria-label="Delete Todo">
+              <Delete />
+            </IconButton>
+          </ListItemSecondaryAction>
+        </ListItem>
+      )
+    } else {
+      element = (
+        <ListItem>
+          <Checkbox
+            type="checkbox"
+            checked={todo.isDone}
+            onChange={() => toggleTodo(todo.id)}
+          />
+          <ListItemText
+            onDoubleClick={this.handleDoubleClick}
+            className={todo.isDone ? classes.done : ''}
+          >
+            {todo.text}
+          </ListItemText>
+          <ListItemSecondaryAction onClick={() => deleteTodo(todo.id)}>
+            <IconButton aria-label="Delete Todo">
+              <Delete />
+            </IconButton>
+          </ListItemSecondaryAction>
+        </ListItem>
       )
     }
-    return <li className={todoStyleClass}>{element}</li>
+    return (
+      <List className={todoStyleClass}>
+        {element}
+        <li>
+          <Divider inset />
+        </li>
+      </List>
+    )
   }
 }
 
-export default Todo
+export default withStyles(styles)(Todo)

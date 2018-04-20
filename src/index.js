@@ -1,11 +1,17 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import './assets/styles/index.css'
 import { Provider } from 'react-redux'
 import { createStore } from 'redux'
 import reducer from './redux/reducers'
-import App from './App'
+import App from './components/App'
 import registerServiceWorker from './registerServiceWorker'
+
+// Typefaces
+import 'typeface-ibm-plex-sans'
+import 'typeface-aleo'
+
+// Styles
+import CssBaseline from 'material-ui/CssBaseline'
 
 /* eslint-disable no-underscore-dangle */
 const store = createStore(
@@ -15,9 +21,12 @@ const store = createStore(
 /* eslint-enable */
 
 ReactDOM.render(
-  <Provider store={store}>
-    <App />
-  </Provider>,
+  <React.Fragment>
+    <CssBaseline />
+    <Provider store={store}>
+      <App />
+    </Provider>
+  </React.Fragment>,
   document.getElementById('root')
 )
 registerServiceWorker()
