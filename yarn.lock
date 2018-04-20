@@ -7036,6 +7036,10 @@ typeface-aleo@^0.0.44:
   version "0.0.44"
   resolved "https://registry.yarnpkg.com/typeface-aleo/-/typeface-aleo-0.0.44.tgz#d89cc1bd48773b857d107db0b638db08ccfdafd8"
 
+typeface-ibm-plex-mono@^0.0.56:
+  version "0.0.56"
+  resolved "https://registry.yarnpkg.com/typeface-ibm-plex-mono/-/typeface-ibm-plex-mono-0.0.56.tgz#7f8e0316fcc140294b12129778a6322fc31ada60"
+
 typeface-ibm-plex-sans@^0.0.58:
   version "0.0.58"
   resolved "https://registry.yarnpkg.com/typeface-ibm-plex-sans/-/typeface-ibm-plex-sans-0.0.58.tgz#5d369480af2e4e3d1663ff71ab66c2cab83e0ca0"

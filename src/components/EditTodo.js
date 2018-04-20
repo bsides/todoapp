@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { withStyles } from 'material-ui/styles'
 import { FormControl, FormHelperText } from 'material-ui/Form'
-import Input, { InputLabel } from 'material-ui/Input'
 import TextField from 'material-ui/TextField'
 
 const styles = theme => ({
@@ -16,7 +15,10 @@ const styles = theme => ({
     width: 500
   },
   editInput: {
-    paddingLeft: '8px'
+    paddingLeft: '8px',
+    paddingRight: '16px',
+    fontFamily: `"IBM Plex Mono"`,
+    fontWeight: 600
   }
 })
 
