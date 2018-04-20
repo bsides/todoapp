@@ -5,21 +5,26 @@ const todos = (state = [], action) => {
       return [
         ...state,
         {
-          id: action.id,
-          text: action.text,
-          isDone: false
+          id: state.reduce((maxId, todo) => Math.max(todo.id, maxId), -1) + 1,
+          isDone: false,
+          text: action.text
         }
       ]
+
     case 'TOGGLE_TODO':
       return state.map(
         todo =>
           todo.id === action.id ? { ...todo, isDone: !todo.isDone } : todo
       )
-    case 'START_EDIT_TODO':
+
+    case 'EDIT_TODO':
       return state.map(
-        todo =>
-          todo.id === action.id ? { ...todo, isEditing: !todo.isEditing } : todo
+        todo => (todo.id === action.id ? { ...todo, text: action.text } : todo)
       )
+
+    case 'DELETE_TODO':
+      return state.filter(todo => todo.id !== action.id)
+
     default:
       return state
   }

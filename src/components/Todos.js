@@ -1,17 +1,16 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { toggleTodo } from '../redux/actions'
+import * as TodoActions from '../redux/actions'
+import { bindActionCreators } from 'redux'
 import Todo from './Todo'
 
-const Todos = ({ todos, toggleTodo }) => {
+const Todos = ({ todos, actions }) => {
   return (
-    <div>
+    <section className="main">
       <ul>
-        {todos.map(todo => (
-          <Todo key={todo.id} {...todo} onClick={() => toggleTodo(todo.id)} />
-        ))}
+        {todos.map(todo => <Todo key={todo.id} todo={todo} {...actions} />)}
       </ul>
-    </div>
+    </section>
   )
 }
 
@@ -20,7 +19,7 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-  toggleTodo: id => dispatch(toggleTodo(id))
+  actions: bindActionCreators(TodoActions, dispatch)
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Todos)
