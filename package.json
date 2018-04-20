@@ -1,7 +1,8 @@
 {
   "name": "todoapp",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "private": true,
+  "homepage": "http://bsides.github.io/todoapp",
   "dependencies": {
     "@material-ui/icons": "^1.0.0-beta.42",
     "material-ui": "^1.0.0-beta.42",
@@ -15,7 +16,7 @@
     "typeface-ibm-plex-sans": "^0.0.58"
   },
   "scripts": {
-    "start": "react-scripts start && mv build docs",
+    "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
