@@ -2,12 +2,7 @@ import React from 'react'
 import EditTodo from './EditTodo'
 import { withStyles } from 'material-ui/styles'
 import Checkbox from 'material-ui/Checkbox'
-import List, {
-  ListItem,
-  ListItemText,
-  ListItemSecondaryAction
-} from 'material-ui/List'
-import Divider from 'material-ui/Divider'
+import { ListItemText, ListItemSecondaryAction } from 'material-ui/List'
 import IconButton from 'material-ui/IconButton'
 import Delete from '@material-ui/icons/Delete'
 
@@ -40,7 +35,7 @@ class Todo extends React.Component {
     let element
     if (this.state.isEditing) {
       element = (
-        <ListItem>
+        <React.Fragment>
           <Checkbox
             type="checkbox"
             checked={todo.isDone}
@@ -56,11 +51,11 @@ class Todo extends React.Component {
               <Delete />
             </IconButton>
           </ListItemSecondaryAction>
-        </ListItem>
+        </React.Fragment>
       )
     } else {
       element = (
-        <ListItem>
+        <React.Fragment>
           <Checkbox
             type="checkbox"
             checked={todo.isDone}
@@ -77,17 +72,10 @@ class Todo extends React.Component {
               <Delete />
             </IconButton>
           </ListItemSecondaryAction>
-        </ListItem>
+        </React.Fragment>
       )
     }
-    return (
-      <List>
-        {element}
-        <li>
-          <Divider inset />
-        </li>
-      </List>
-    )
+    return element
   }
 }
 

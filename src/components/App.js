@@ -39,7 +39,7 @@ const App = ({ todos, actions, classes }) => (
         <Grid item xs={12}>
           <AddTodo addTodo={actions.addTodo} />
         </Grid>
-        <Grid item xs={12}>
+        <Grid item xs={12} className={classes.wrapper}>
           <Todos todos={todos} actions={actions} />
         </Grid>
       </Grid>
