@@ -5,6 +5,7 @@ import { createStore } from 'redux'
 import reducer from './redux/reducers'
 import App from './components/App'
 import { loadState, saveState } from './redux/localStorage'
+import throttle from 'lodash/throttle'
 import registerServiceWorker from './registerServiceWorker'
 
 // Typefaces
@@ -22,9 +23,11 @@ const store = createStore(
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 )
 /* eslint-enable */
-store.subscribe(() => {
-  saveState(store.getState())
-})
+store.subscribe(
+  throttle(() => {
+    saveState(store.getState())
+  }, 1000)
+)
 
 ReactDOM.render(
   <React.Fragment>
