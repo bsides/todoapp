@@ -37,10 +37,6 @@ class Todo extends React.Component {
 
   render() {
     const { todo, toggleTodo, deleteTodo, classes } = this.props
-    const todoStyleClass = [
-      todo.isDone && 'completed',
-      this.state.isEditing && 'editing'
-    ].join(' ')
     let element
     if (this.state.isEditing) {
       element = (
@@ -85,7 +81,7 @@ class Todo extends React.Component {
       )
     }
     return (
-      <List className={todoStyleClass}>
+      <List>
         {element}
         <li>
           <Divider inset />

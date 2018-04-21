@@ -23,36 +23,28 @@ const theme = createMuiTheme({
   }
 })
 const styles = theme => ({
-  root: { textAlign: 'center' }
+  root: {
+    textAlign: 'center'
+  },
+  wrapper: {
+    maxWidth: '500px',
+    margin: 'auto'
+  }
 })
 
 const App = ({ todos, actions, classes }) => (
-  <div className={classes.root}>
-    <MuiThemeProvider theme={theme}>
-      <Grid container>
+  <MuiThemeProvider theme={theme}>
+    <div className={classes.root}>
+      <Grid container className={classes.wrapper}>
         <Grid item xs={12}>
-          <Grid
-            container
-            justify="center"
-            direction="column"
-            alignItems="center"
-          >
-            <AddTodo addTodo={actions.addTodo} />
-          </Grid>
+          <AddTodo addTodo={actions.addTodo} />
         </Grid>
-        <Grid item xs>
-          <Grid
-            container
-            justify="center"
-            direction="column"
-            alignItems="center"
-          >
-            <Todos todos={todos} actions={actions} />
-          </Grid>
+        <Grid item xs={12}>
+          <Todos todos={todos} actions={actions} />
         </Grid>
       </Grid>
-    </MuiThemeProvider>
-  </div>
+    </div>
+  </MuiThemeProvider>
 )
 
 const mapStateToProps = state => ({

@@ -4,15 +4,10 @@ import { FormControl, FormHelperText } from 'material-ui/Form'
 import TextField from 'material-ui/TextField'
 
 const styles = theme => ({
-  container: {
-    display: 'flex',
-    flexWrap: 'wrap'
-  },
   formControl: {
-    margin: theme.spacing.unit
-  },
-  textInput: {
-    width: 500
+    margin: theme.spacing.unit,
+    marginLeft: '40px',
+    display: 'flex'
   },
   editInput: {
     paddingLeft: '8px',
@@ -73,28 +68,25 @@ class EditTodo extends Component {
       )
     } else {
       return (
-        <div className={classes.container}>
-          <FormControl
-            className={classes.formControl}
-            aria-describedby="name-helper-text"
-          >
-            <TextField
-              className={classes.textInput}
-              label={label}
-              type="text"
-              autoFocus={true}
-              value={this.state.text}
-              onBlur={this.handleBlur}
-              onChange={this.handleChange}
-              onKeyDown={this.handleSubmit}
-              margin="normal"
-              fullWidth
-            />
-            <FormHelperText id="name-helper-text">
-              {this.props.placeholder}
-            </FormHelperText>
-          </FormControl>
-        </div>
+        <FormControl
+          className={classes.formControl}
+          aria-describedby="name-helper-text"
+        >
+          <TextField
+            label={label}
+            type="text"
+            autoFocus={true}
+            value={this.state.text}
+            onBlur={this.handleBlur}
+            onChange={this.handleChange}
+            onKeyDown={this.handleSubmit}
+            margin="normal"
+            fullWidth
+          />
+          <FormHelperText id="name-helper-text">
+            {this.props.placeholder}
+          </FormHelperText>
+        </FormControl>
       )
     }
   }
